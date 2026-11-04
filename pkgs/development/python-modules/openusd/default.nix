@@ -78,6 +78,11 @@ buildPythonPackage rec {
       url = "https://gitlab.archlinux.org/archlinux/packaging/packages/usd/-/raw/41469f20113d3550c5b42e67d1139dedc1062b8c/usd-find-dependency-OpenGL.patch?full_index=1";
       hash = "sha256-aUWGKn365qov0ttGOq5GgNxYGIGZ4DfmeMJfakbOugQ=";
     })
+    # https://github.com/PixarAnimationStudios/OpenUSD/security/advisories/GHSA-75r4-2rhh-hrxw
+    # Backport of upstream 9f0460e73e6b123d41274a352e4a5cf90e7dd0a2 and
+    # 7c62a43d8823dd4e1ef8c49fc1d72729e1ce6e36: reject crate files older than
+    # 0.4.0 right after reading the bootstrap section.
+    ./CVE-2026-92211.patch
   ];
 
   env.OSL_LOCATION = lib.optionalString withOsl "${openshadinglanguage}";
