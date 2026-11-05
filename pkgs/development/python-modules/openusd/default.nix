@@ -78,6 +78,16 @@ buildPythonPackage rec {
       url = "https://gitlab.archlinux.org/archlinux/packaging/packages/usd/-/raw/41469f20113d3550c5b42e67d1139dedc1062b8c/usd-find-dependency-OpenGL.patch?full_index=1";
       hash = "sha256-aUWGKn365qov0ttGOq5GgNxYGIGZ4DfmeMJfakbOugQ=";
     })
+    (fetchpatch {
+      # https://github.com/PixarAnimationStudios/OpenUSD/security/advisories/GHSA-58p5-r2f6-g2cj
+      name = "GHSA-58p5-r2f6-g2cj.patch";
+      url = "https://github.com/PixarAnimationStudios/OpenUSD/commit/0d74f31fe64310791e274e587c9926335e9db9db.patch?full_index=1";
+      excludes = [
+        "pxr/usd/usd/CMakeLists.txt"
+        "pxr/usd/usd/testenv/*"
+      ];
+      hash = "sha256-IWpLNpdvme8aQAgHEAMKtwVdoWVFsQoyDyQ3Tt+jbEU=";
+    })
     # https://github.com/PixarAnimationStudios/OpenUSD/security/advisories/GHSA-75r4-2rhh-hrxw
     # Backport of upstream 9f0460e73e6b123d41274a352e4a5cf90e7dd0a2 and
     # 7c62a43d8823dd4e1ef8c49fc1d72729e1ce6e36: reject crate files older than
