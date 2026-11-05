@@ -88,6 +88,17 @@ buildPythonPackage rec {
       ];
       hash = "sha256-IWpLNpdvme8aQAgHEAMKtwVdoWVFsQoyDyQ3Tt+jbEU=";
     })
+    (fetchpatch {
+      # https://github.com/PixarAnimationStudios/OpenUSD/security/advisories/GHSA-qgc5-vc49-x7jw
+      # https://github.com/PixarAnimationStudios/OpenUSD/security/advisories/GHSA-5hf7-7jmm-gqcf
+      name = "GHSA-qgc5-vc49-x7jw-GHSA-5hf7-7jmm-gqcf.patch";
+      url = "https://github.com/PixarAnimationStudios/OpenUSD/commit/05f0191f3725f39d59b8c481753c7c9270282df7.patch?full_index=1";
+      excludes = [
+        "pxr/usdImaging/usdviewq/CMakeLists.txt"
+        "pxr/usdImaging/usdviewq/testenv/*"
+      ];
+      hash = "sha256-+ywvLHVfGdW5iVh9dT7yRwFsP2ynCxd4SB19DGutYk0=";
+    })
     # https://github.com/PixarAnimationStudios/OpenUSD/security/advisories/GHSA-75r4-2rhh-hrxw
     # Backport of upstream 9f0460e73e6b123d41274a352e4a5cf90e7dd0a2 and
     # 7c62a43d8823dd4e1ef8c49fc1d72729e1ce6e36: reject crate files older than
